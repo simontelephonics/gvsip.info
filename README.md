@@ -26,3 +26,7 @@ Google Voice uses these standards extending what is commonly implemented in a SI
 
 ### Media requirements
 On the media side, GV requires the client to present a full ICE implementation. 
+
+Contributions/Corrections
+-------------------------
+[Submit an issue](https://github.com/simontelephonics/gvsip.info/issues/new) for contributions or corrections. 

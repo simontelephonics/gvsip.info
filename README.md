@@ -25,7 +25,11 @@ Google Voice uses these standards extending what is commonly implemented in a SI
 * [draft-ietf-sipcore-sip-authn-02](https://tools.ietf.org/html/draft-ietf-sipcore-sip-authn-02), Third-Party Authentication for Session Initiation Protocol, section 3: Authentication using the Resource Owner Password Credentials flow
 
 ### Media requirements
+#### ICE
 On the media side, GV requires the client to present a full ICE implementation. 
+
+#### RTCP
+Google Voice implements rtcp-mux ([RFC 5761](https://tools.ietf.org/html/rfc5761)).
 
 Contributions/Corrections
 -------------------------

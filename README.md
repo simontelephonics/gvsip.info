@@ -1,8 +1,7 @@
 Google Voice SIP Information
 ============================
 
-On the Google Voice Product Forum, Google representatives [announced that Google Voice's XMPP interop 
-would be discontinued](https://productforums.google.com/forum/#!topic/voice/NYRy5U31o98) on June 18, 2018.
+On the Google Voice Product Forum, Google representatives [announced that they "will finish migrating the last of \[their\] XMPP interop capabilities for Google Voice to the new \[SIP-based\] Voice platform"](https://productforums.google.com/forum/#!topic/voice/NYRy5U31o98) starting on June 18, 2018. The confusing wording of the statement makes it unclear exactly what will happen on June 18, but one possibility is that the XMPP interop will be shut off at that time.
 
 This site documents how to connect to Google Voice using SIP.
 

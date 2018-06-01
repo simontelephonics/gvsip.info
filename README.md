@@ -15,7 +15,6 @@ Community Resources
 
 Technical Details
 -----------------
-
 ### SIP RFCs
 Google Voice uses these standards extending what is commonly implemented in a SIP UAC.
 
@@ -30,6 +29,12 @@ On the media side, GV requires the client to present a full ICE implementation.
 
 #### RTCP
 Google Voice implements rtcp-mux ([RFC 5761](https://tools.ietf.org/html/rfc5761)).
+
+Known Implementations
+---------------------
+* Google Voice app for Android
+* Obihai 200/202/212 (ATA), 1022/1032/1062 (IP Phone)
+* [Simon Telephonics Google Voice Gateway](https://simonics.com/gw) - currently in [beta testing for SIP interop](https://www.dslreports.com/forum/r31966059-Google-Voice-Gateway-beta-test-for-SIP-interop)
 
 Contributions/Corrections
 -------------------------

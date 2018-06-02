@@ -29,6 +29,19 @@ On the media side, GV requires the client to present a full ICE implementation.
 #### RTCP
 Google Voice implements rtcp-mux ([RFC 5761](https://tools.ietf.org/html/rfc5761)).
 
+#### Codecs
+* G.711µ
+* Opus
+
+### Endpoints
+
+| Proxy                            | Registrar             | Used by          | Notes                  |
+|----------------------------------|-----------------------|------------------|------------------------|
+| voice.telephony.goog:5061 (TLS)  | voice.sip.google.com  | GV Android app   |                        |
+| alt#.voice.telephony.goog:5061   |                       |                  | # = 1..?               |
+| obihai.telephony.goog:5061 (TLS) | obihai.sip.google.com | Obihai devices   | Registration generates an "ObiTalk Device" entry on the GV settings page |
+| alt#.obihai.telephony.goog:5061  |                       |                  | # = 1..?               |
+
 Known Implementations
 ---------------------
 * Google Voice app for Android

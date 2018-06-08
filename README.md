@@ -42,6 +42,94 @@ Google Voice implements rtcp-mux ([RFC 5761](https://tools.ietf.org/html/rfc5761
 | obihai.telephony.goog:5061 (TLS) | obihai.sip.google.com | Obihai devices   | Registration generates an "ObiTalk Device" entry on the GV settings page |
 | alt#.obihai.telephony.goog:5061  |                       |                  | # = 1..?               |
 
+Example Flow
+------------
+
+### Registration & establishing the TLS socket
+#### Request
+```sip
+REGISTER sip:obihai.sip.google.com SIP/2.0
+Contact: <sip:me@example.com;transport=tls>;obn=identifier
+Expires: 3600
+To: <sip:me@obihai.sip.google.com>
+Call-ID: ...
+Via: SIP/2.0/TLS 10.10.10.10:38250;alias;rport;branch=...
+From: <sip:me@obihai.sip.google.com>;tag=...
+CSeq: 1 REGISTER
+Max-Forwards: 70
+Allow: ACK, INVITE, BYE, CANCEL, REGISTER, REFER, OPTIONS, PRACK, INFO
+Supported: outbound, path
+Authorization: Bearer username="me",realm="obihai.sip.google.com",token="an access token"
+Content-Length: 0
+```
+#### Success Response
+```sip
+SIP/2.0 200 OK
+Via: SIP/2.0/TLS 10.10.10.10:38250;rport=38250;branch=...;received=...;alias
+Service-Route: <sip:ENCODED-ROUTE:5060;uri-econt=ENCODED-ROUTE-PART-2;lr>
+Service-Route: <sip:SECOND-ENCODED-ROUTE:5060;transport=udp;lr;uri-econt=PART-2>
+Require: outbound
+Contact: <sip:me@10.10.10.10:38250;transport=tls>;obn=identifier;expires=...
+To: <sip:me@obihai.sip.google.com>;tag=...
+From: <sip:me@obihai.sip.google.com>;tag=...
+Call-ID: ...
+CSeq: 1 REGISTER
+Allow: ACK, BYE, CANCEL, INFO, INVITE, NOTIFY, OPTIONS, PRACK, REGISTER, SUBSCRIBE, UPDATE
+P-Associated-URI: <sip:BASE-32-ENCODED-URI@obihai.sip.google.com>
+P-Associated-URI: <sip:me@obihai.sip.google.com>
+Content-Length: 0
+```
+
+Store the Service-Routes and the encoded P-Associated-URI. These are used later when establishing a dialog. Service-Routes become `Route:` headers (maintain the same order) and the encoded P-Associated-URI is used for the `P-Preferred-Identity:` header.
+
+Outbound calls are placed over the established socket.
+
+### INVITE
+#### Request
+```sip
+INVITE sip:18005551212@obihai.sip.google.com SIP/2.0
+Route: <sip:ENCODED-ROUTE:5060;uri-econt=ENCODED-ROUTE-PART-2;lr>
+Route: <sip:SECOND-ENCODED-ROUTE:5060;transport=udp;lr;uri-econt=PART-2>
+P-Preferred-Identity: <sip:BASE-32-ENCODED-URI@obihai.sip.google.com>
+Max-Forwards: 19
+Via: SIP/2.0/TLS 10.10.10.10:38250;alias;rport;branch=...
+From: <sip:me@example.com>;tag=...
+To: <sip:18005551212@obihai.sip.google.com>
+Call-ID: ...
+CSeq: 2 INVITE
+Contact: <sip:me@10.10.10.10:38250;transport=TLS>
+Allow: ACK, INVITE, BYE, CANCEL, REGISTER, REFER, OPTIONS, PRACK, INFO
+Supported: outbound, path, replaces, 100rel
+Content-Type: application/sdp
+Content-Length: ...
+
+(sdp)
+```
+
+#### Responses
+```sip
+SIP/2.0 100 Trying
+...
+```
+
+```sip
+SIP/2.0 183 Session Progress
+...
+(sdp)
+```
+
+The 183 response will include an SDP and Google Voice will start sending early media.
+
+There may be a `180 Ringing` response after this. If so, the endpoint should locally play ringback tone to the caller (differs from common practice defined in [RFC 3960](https://tools.ietf.org/html/rfc3960)).
+
+```sip
+SIP/2.0 200 OK
+...
+(sdp)
+```
+
+The provisional responses and the 200 OK will contain `Record-Route:` headers which are used for in-dialog routing.
+
 Known Implementations
 ---------------------
 * Google Voice app for Android

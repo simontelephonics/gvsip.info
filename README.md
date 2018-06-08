@@ -47,7 +47,7 @@ Example Flow
 
 ### Registration & establishing the TLS socket
 #### Request
-```http
+```sip
 REGISTER sip:obihai.sip.google.com SIP/2.0
 Contact: <sip:me@example.com;transport=tls>;obn=identifier
 Expires: 3600
@@ -63,7 +63,7 @@ Authorization: Bearer username="me",realm="obihai.sip.google.com",token="an acce
 Content-Length: 0
 ```
 #### Success Response
-```http
+```sip
 SIP/2.0 200 OK
 Via: SIP/2.0/TLS 10.10.10.10:38250;rport=38250;branch=...;received=...;alias
 Service-Route: <sip:ENCODED-ROUTE:5060;uri-econt=ENCODED-ROUTE-PART-2;lr>
@@ -86,7 +86,7 @@ Outbound calls are placed over the established socket.
 
 ### INVITE
 #### Request
-```http
+```sip
 INVITE sip:18005551212@obihai.sip.google.com SIP/2.0
 Route: <sip:ENCODED-ROUTE:5060;uri-econt=ENCODED-ROUTE-PART-2;lr>
 Route: <sip:SECOND-ENCODED-ROUTE:5060;transport=udp;lr;uri-econt=PART-2>
@@ -107,12 +107,12 @@ Content-Length: ...
 ```
 
 #### Responses
-```http
+```sip
 SIP/2.0 100 Trying
 ...
 ```
 
-```http
+```sip
 SIP/2.0 183 Session Progress
 ...
 (sdp)
@@ -122,7 +122,7 @@ The 183 response will include an SDP and Google Voice will start sending early m
 
 There may be a `180 Ringing` response after this. If so, the endpoint should locally play ringback tone to the caller (differs from common practice defined in [RFC 3960](https://tools.ietf.org/html/rfc3960)).
 
-```http
+```sip
 SIP/2.0 200 OK
 ...
 (sdp)

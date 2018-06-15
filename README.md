@@ -46,7 +46,7 @@ Example Flow
 ------------
 
 ### Registration & establishing the TLS socket
-#### Request
+#### Request (via proxy listed in table above; e.g. obihai.telephony.goog:5061/TLS)
 ```sip
 REGISTER sip:obihai.sip.google.com SIP/2.0
 Contact: <sip:me@example.com;transport=tls>;obn=identifier

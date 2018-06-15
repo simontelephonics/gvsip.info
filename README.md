@@ -130,6 +130,123 @@ SIP/2.0 200 OK
 
 The provisional responses and the 200 OK will contain `Record-Route:` headers which are used for in-dialog routing.
 
+### Incoming call (INVITE)
+#### Request
+```sip
+INVITE sip:me@10.10.10.10:38250;transport=tls SIP/2.0
+Via: SIP/2.0/TLS 64.9.243.172:5061;branch=z9hG4bK...;rport
+Via: SIP/2.0/UDP ENCODED-ROUTE:5060;branch=z9hG4bK...;econt=PART-2
+Via: SIP/2.0/UDP SECOND-ENCODED-ROUTE:5060;branch=z9hG4bK...;econt=PART-2
+Max-Forwards: 68
+Record-Route: <sip:64.9.243.172:5061;lr;transport=tls>
+Record-Route: <sip:ENCODED-ROUTE:5060;lr;transport=udp;uri-econt=PART-2>
+Contact: <sip:+18005551212@ENCODED-DOMAIN:5060;transport=udp;uri-econt=PART-2>
+To: <sip:BASE-32-ENCODED-URI@obihai.sip.google.com>
+From: "caller" <sip:+18005551212@216.239.32.1:5060>;tag=...
+Call-ID: ...
+CSeq: 18524 INVITE
+Allow: ACK, BYE, CANCEL, INVITE, UPDATE
+Content-Type: application/sdp
+Supported: 100rel
+Privacy: none
+P-Asserted-Identity: "caller" <sip:+18005551212@216.239.32.1>
+P-Called-Party-ID: <sip:BASE-32-ENCODED-URI@obihai.sip.google.com>
+Content-Length: 553
+
+v=0
+o=- 2125604025 1529079021317 IN IP4 74.125.39.26
+s=SIP Call
+c=IN IP4 74.125.39.26
+t=0 0
+a=ice-lite
+a=ice-pwd:...
+a=ice-ufrag:...
+a=group:BUNDLE audio
+a=fingerprint:sha-256 16:61:CE:09:B3:82:D2:81:DE:77:DB:B6:62:1C:CB:7E:D0:1B:F3:0B:D4:F7:D2:89:F1:74:35:45:2E:C3:FE:6E
+a=setup:actpass
+m=audio 19305 RTP/AVP 0 101
+a=rtpmap:0 PCMU/8000
+a=rtpmap:101 telephone-event/8000
+a=rtcp-mux
+a=candidate:1 1 UDP 1 74.125.39.26 19305 typ host
+a=candidate:2 1 UDP 2 2001:4860:4864:2::26 19305 typ host
+a=sendrecv
+```
+
+#### Responses
+```sip
+SIP/2.0 100 Trying
+Via: SIP/2.0/TLS 64.9.243.172:5061;branch=z9hG4bK...;rport
+Via: SIP/2.0/UDP ENCODED-ROUTE:5060;branch=z9hG4bK...;econt=PART-2
+Via: SIP/2.0/UDP SECOND-ENCODED-ROUTE:5060;branch=z9hG4bK...;econt=PART-2
+Record-Route: <sip:64.9.243.172:5061;lr;transport=tls>
+Record-Route: <sip:ENCODED-ROUTE:5060;lr;transport=udp;uri-econt=PART-2>
+To: <sip:BASE-32-ENCODED-URI@obihai.sip.google.com>
+From: "caller" <sip:+18005551212@216.239.32.1:5060>;tag=...
+Call-ID: ...
+CSeq: 18524 INVITE
+Server: ...
+Content-Length: 0
+```
+
+```sip
+SIP/2.0 180 Ringing
+Via: SIP/2.0/TLS 64.9.243.172:5061;branch=z9hG4bK...;rport
+Via: SIP/2.0/UDP ENCODED-ROUTE:5060;branch=z9hG4bK...;econt=PART-2
+Via: SIP/2.0/UDP SECOND-ENCODED-ROUTE:5060;branch=z9hG4bK...;econt=PART-2
+Record-Route: <sip:64.9.243.172:5061;lr;transport=tls>
+Record-Route: <sip:ENCODED-ROUTE:5060;lr;transport=udp;uri-econt=PART-2>
+To: <sip:BASE-32-ENCODED-URI@obihai.sip.google.com>
+From: "caller" <sip:+18005551212@216.239.32.1:5060>;tag=...
+Call-ID: ...
+CSeq: 18524 INVITE
+Server: ...
+Contact: <sip:me@10.10.10.10:38250;transport=TLS>
+Allow: ACK, INVITE, BYE, CANCEL, REGISTER, REFER, OPTIONS, PRACK, INFO
+Content-Length: 0
+```
+
+```sip
+SIP/2.0 200 OK
+Via: SIP/2.0/TLS 64.9.243.172:5061;branch=z9hG4bK...;rport
+Via: SIP/2.0/UDP ENCODED-ROUTE:5060;branch=z9hG4bK...;econt=PART-2
+Via: SIP/2.0/UDP SECOND-ENCODED-ROUTE:5060;branch=z9hG4bK...;econt=PART-2
+Record-Route: <sip:64.9.243.172:5061;lr;transport=tls>
+Record-Route: <sip:ENCODED-ROUTE:5060;lr;transport=udp;uri-econt=PART-2>
+To: <sip:BASE-32-ENCODED-URI@obihai.sip.google.com>
+From: "caller" <sip:+18005551212@216.239.32.1:5060>;tag=...
+Call-ID: ...
+CSeq: 18524 INVITE
+Server: ...
+Contact: <sip:me@10.10.10.10:38250;transport=TLS>
+Allow: ACK, INVITE, BYE, CANCEL, REGISTER, REFER, OPTIONS, PRACK, INFO
+Content-Length: 424
+
+v=0
+o=- 11370442 1 IN IP4 10.10.10.10
+s=-
+c=IN IP4 10.10.10.10
+t=0 0
+m=audio 24624 RTP/AVP 0 101
+a=rtpmap:0 PCMU/8000
+a=rtpmap:101 telephone-event/8000
+a=fmtp:101 0-15
+a=sendrecv
+a=rtcp:24624
+a=rtcp-mux
+a=ptime:20
+a=ice-ufrag:...
+a=ice-pwd:...
+a=candidate: (private IP)
+a=candidate:... 1 UDP 2130706431 PUB.LIC.IP.ADDR 24624 typ host
+```
+
+#### Request
+```sip
+ACK sip:me@10.10.10.10:38250;transport=tls SIP/2.0
+...
+```
+
 Known Implementations
 ---------------------
 * Google Voice app for Android

@@ -37,10 +37,10 @@ Google Voice implements rtcp-mux ([RFC 5761](https://tools.ietf.org/html/rfc5761
 
 | Proxy                            | Registrar             | Used by          | Notes                  |
 |----------------------------------|-----------------------|------------------|------------------------|
-| voice.telephony.goog:5061 (TLS)  | voice.sip.google.com  | GV Android app   |                        |
-| alt#.voice.telephony.goog:5061   |                       |                  | # = 1..?               |
+| voice.telephony.goog:5061 (TLS)  | voice.sip.google.com  | GV Android app   | Dial in E.164/E.123 format (e.g. +1NXXNXXXXXX |
+| alt#.voice.telephony.goog:5061   |                       |                  | # = 1..? |
 | obihai.telephony.goog:5061 (TLS) | obihai.sip.google.com | Obihai devices   | Registration generates an "ObiTalk Device" entry on the GV settings page |
-| alt#.obihai.telephony.goog:5061  |                       |                  | # = 1..?               |
+| alt#.obihai.telephony.goog:5061  |                       |                  | # = 1..? |
 
 Example Flow
 ------------
@@ -252,6 +252,7 @@ Known Implementations
 * Google Voice app for Android
 * Obihai 200/202/212 (ATA), 1022/1032/1062/2062/2162/2182 (IP Phone)
 * [Simon Telephonics Google Voice Gateway](https://simonics.com/gw) - currently in [beta testing for SIP interop](https://www.dslreports.com/forum/r31966059-Google-Voice-Gateway-beta-test-for-SIP-interop)
+* [Asterisk "naf" fork](https://github.com/naf419/asterisk/tree/gvsip) - work in progress
 
 Contributions/Corrections
 -------------------------

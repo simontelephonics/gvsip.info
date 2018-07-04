@@ -251,8 +251,9 @@ Known Implementations
 ---------------------
 * Google Voice app for Android
 * Obihai 200/202/212 (ATA), 1022/1032/1062/2062/2162/2182 (IP Phone)
-* [Simon Telephonics Google Voice Gateway](https://simonics.com/gw) - currently in [beta testing for SIP interop](https://www.dslreports.com/forum/r31966059-Google-Voice-Gateway-beta-test-for-SIP-interop)
-* [Asterisk "naf" fork](https://github.com/naf419/asterisk/tree/gvsip) - work in progress
+* [Asterisk "naf" fork](https://github.com/naf419/asterisk/tree/gvsip) - work in progress. Discussion at [DSLReports](https://www.dslreports.com/forum/r32016984-Asterisk-Google-Voice-SIP-testing-and-technical-discussion)
+* [Incredible PBX 13-13 for CentOS 6.9 implementation of GVSIP-NAF](http://nerdvittles.com/?p=26204)
+* [Incredible PBX 13-13 for Raspberry Pi implementation of GVSIP-NAF](http://nerdvittles.com/?p=26267)
 
 Contributions/Corrections
 -------------------------

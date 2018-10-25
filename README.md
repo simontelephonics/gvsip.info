@@ -7,9 +7,9 @@ This site documents how to connect to Google Voice using SIP.
 
 Community Resources
 -------------------
-* [Alternatives to XMPP (Google Voice Product Forum)](https://productforums.google.com/forum/?utm_medium=email&utm_source=footer#!topic/voice/Psj4Zd-hRpM;context-place=forum/voice)
-* [Google Voice XMPP support will go away in June (DSL Reports forum)](https://www.dslreports.com/forum/r31938501-Google-Voice-XMPP-support-will-go-away-in-June) - Findings and speculation on Google Voice's SIP implementation
-* [Google Voice Gateway beta test for SIP interop (DSL Reports forum)](https://www.dslreports.com/forum/r31966059-Google-Voice-Gateway-beta-test-for-SIP-interop) - Simon Telephonics updating the Google Voice Gateway to use the new SIP protocol: beta testing and results
+* [Asterisk configuration example](asterisk.md) to use with Asterisk master branch (version 17 development). Contributed by naf.
+* [Google Voice XMPP support will go away in June (DSL Reports forum)](https://www.dslreports.com/forum/r31938501-Google-Voice-XMPP-support-will-go-away-in-June) - Early discussion and speculation on Google Voice's SIP implementation
+* [DSLReports thread on development of Asterisk updates for GV-SIP](https://www.dslreports.com/forum/r32016984-Asterisk-Google-Voice-SIP-testing-and-technical-discussion)
 * [ObiTalk forum](https://obitalk.com/forum) - Polycom/Obihai users sharing their experience and some useful information about how Obi devices connect to Google Voice using SIP
 
 Technical Details
@@ -251,7 +251,7 @@ Known Implementations
 ---------------------
 * Google Voice app for Android
 * Obihai 200/202/212 (ATA), 1022/1032/1062/2062/2162/2182 (IP Phone)
-* [Asterisk "naf" fork](https://github.com/naf419/asterisk/tree/gvsip) - work in progress. Discussion at [DSLReports](https://www.dslreports.com/forum/r32016984-Asterisk-Google-Voice-SIP-testing-and-technical-discussion)
+* [Asterisk "naf" fork](https://github.com/naf419/asterisk/tree/gvsip) - Now merged into the Asterisk source ([Asterisk/master](https://github.com/asterisk/asterisk/tree/master)), this was a set of patches used to support Google Voice SIP. Use [this sample config](asterisk.md) to connect Asterisk to Google Voice.
 * [Incredible PBX 13-13 for CentOS 6.9 implementation of GVSIP-NAF](http://nerdvittles.com/?p=26204)
 * [Incredible PBX 13-13 for Raspberry Pi implementation of GVSIP-NAF](http://nerdvittles.com/?p=26267)
 

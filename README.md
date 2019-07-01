@@ -1,9 +1,7 @@
 Google Voice SIP Information
 ============================
 
-On the Google Voice Product Forum, Google representatives [announced that they "will finish migrating the last of \[their\] XMPP interop capabilities for Google Voice to the new \[SIP-based\] Voice platform"](https://productforums.google.com/forum/#!topic/voice/NYRy5U31o98) starting on June 18, 2018. The confusing wording of the statement makes it unclear exactly what will happen on June 18, but one possibility is that the XMPP interop will be shut off at that time.
-
-This site documents how to connect to Google Voice using SIP.
+In July 2018, Google Voice discontinued their XMPP-based integration and moved to a SIP-based method. These changes were discovered and documented mostly by the VoIP hobbyist community.
 
 Community Resources
 -------------------
@@ -249,11 +247,9 @@ ACK sip:me@10.10.10.10:38250;transport=tls SIP/2.0
 
 Known Implementations
 ---------------------
-* Google Voice app for Android
+* Google Voice apps for Android and iOS (Currently you must be in the "WiFi Beta" program to use the SIP calling feature)
 * Obihai 200/202/212 (ATA), 1022/1032/1062/2062/2162/2182 (IP Phone)
 * [Asterisk "naf" fork](https://github.com/naf419/asterisk/tree/gvsip) - Now merged into the Asterisk source ([Asterisk/master](https://github.com/asterisk/asterisk/tree/master)), this was a set of patches used to support Google Voice SIP. Use [this sample config](asterisk.md) to connect Asterisk to Google Voice.
-* [Incredible PBX 13-13 for CentOS 6.9 implementation of GVSIP-NAF](http://nerdvittles.com/?p=26204)
-* [Incredible PBX 13-13 for Raspberry Pi implementation of GVSIP-NAF](http://nerdvittles.com/?p=26267)
 
 Contributions/Corrections
 -------------------------

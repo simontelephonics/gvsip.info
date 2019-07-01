@@ -17,7 +17,10 @@ bind=0.0.0.0:9999
 [transport_tls]
 type=transport
 protocol=tls
+method=tlsv1_2
 bind=0.0.0.0:5061
+cert_file=/path/to/an/obi/signed/client.crt
+priv_key_file=/path/to/an/obi/signed/client.key
  
 [gvsipN]
 type=transport
@@ -27,7 +30,7 @@ protocol=flow
 type=registration
 outbound_auth=gvsipN
 server_uri=sip:obihai.sip.google.com
-outbound_proxy=sip:fi.telephony.goog:5061\;transport=tls\;lr\;hide
+outbound_proxy=sip:obihai.telephony.goog:5061\;transport=tls\;lr\;hide
 client_uri=sip:<your choice for unique user identifier>@obihai.sip.google.com
 retry_interval=60
 support_path=yes
@@ -57,7 +60,7 @@ disallow=all
 allow=ulaw
 allow=opus
 outbound_auth=gvsipN
-outbound_proxy=sip:fi.telephony.goog:5061\;transport=tls\;lr\;hide
+outbound_proxy=sip:obihai.telephony.goog:5061\;transport=tls\;lr\;hide
 aors=gvsipN
 direct_media=no
 ice_support=yes
